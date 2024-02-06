@@ -2,32 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body{
+    height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.custom-bg {
+    background: rgb(10, 2, 54);
+    background: linear-gradient(90deg, rgba(10, 2, 54, 1) 0%, rgba(0, 19, 102, 1) 58%, rgba(15, 73, 136, 1) 89%);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes leftToRight {
+    0% {
+        opacity: 0;
+        transform: translateX();
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(25px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slider {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .rounded-custom {
+        border-radius: 70% 30% 27% 73% / 38% 52% 48% 62%;
+    }
+
+    .custom-spin {
+        animation: spin 4s linear infinite;
+    }
+
+    .left-right-movement {
+        animation: leftToRight 5s linear infinite;
+    }
+
+    .slider-container {
+        animation: slider 0.5s ease;
+      }
+    
+}
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
 }

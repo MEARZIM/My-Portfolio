@@ -1,0 +1,58 @@
+export const projectsData = [
+    {
+      id: 1,
+      title: "E-commerce Application",
+      description: "E-commerce Application Based on React",
+      image: "/images/projectsImages/E-com.png",
+      tag: ["All", "Fullstack"],
+      gitUrl: "https://github.com/MEARZIM/Ecommerce_website_on_electronic_goods?tab=readme-ov-file",
+      previewUrl: "/",
+    },
+    {
+      id: 2,
+      title: "LeetCode Clone ",
+      description: "LeetCode Clone with Next.js and MongoDB",
+      image: "/images/projectsImages/Leet-Code-Clone.png",
+      tag: ["All", "Fullstack"],
+      gitUrl: "https://github.com/MEARZIM/LeetCode-Clone?tab=readme-ov-file",
+      previewUrl: "/",
+    },
+    
+    {
+      id: 3,
+      title: "CRUD LOGIN SYSTEM",
+      description: "Authentication and CRUD operations On Next.js",
+      image: "/images/projectsImages/Crud-ts.png",
+      tag: ["All", "Fullstack"],
+      gitUrl: "https://github.com/MEARZIM/CRUD-LOGIN-SYSTEM",
+      previewUrl: "/",
+    },
+    {
+      id: 4,
+      title: "Amazon landing page",
+      description: "Amazon landing page ",
+      image: "/images/projectsImages/amaon-landing-page.png",
+      tag: ["All", "Frontend"],
+      gitUrl: "https://github.com/MEARZIM/Amazonclone",
+      previewUrl: "/",
+    },
+    {
+      id: 5,
+      title: "CRUD LOGIN SYSTEM",
+      description: "Authentication and CRUD operations On php",
+      image: "/images/projectsImages/Crud-php.png",
+      tag: ["All", "Fullstack"],
+      gitUrl: "/",
+      previewUrl: "/",
+    },
+    {
+        id: 6,
+        title: "Travel Agency Application",
+        description: "You can book travel packages as you like. Based on Html and css",
+        image: "/images/projectsImages/Travel-website.png",
+        tag: ["All", "Frontend"],
+        gitUrl: "https://github.com/MEARZIM/Travel",
+        previewUrl: "/",
+      },
+  ];
+  
