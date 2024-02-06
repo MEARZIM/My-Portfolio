@@ -11,7 +11,7 @@ const Contacts = () => {
         <section className="container my-4 py-10 mx-auto md:px-6" id='Contact'>
             <span className='flex items-center justify-center lg:text-4xl md:text-2xl gap-2 '>
                 <FaAnglesRight color='blue' />
-                Let's keep in touch!
+                Let{"'"}s keep in touch!
                 <FaAnglesLeft color='blue' />
 
             </span>
