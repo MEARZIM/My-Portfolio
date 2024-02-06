@@ -31,15 +31,15 @@ const Contacts = () => {
                                     </p>
                                     <p className='flex items-center justify-center font-semibold text-white'>
                                         <span className='text-red-400 text-lg'>
-                                            Gmail
+                                            Gmail 
                                         </span>
-                                        &nbsp;
+                                        
 
-                                        <FaArrowRight color='white' />
-                                        &nbsp;
+                                        <FaArrowRight color='white' size={10}/>
+                                        
 
                                         <span className='text-blue-300 cursor-pointer'>
-                                            asahaayan@gmail.com
+                                        asahaayan@gmail.com
                                         </span>
                                     </p>
                                 </div>
