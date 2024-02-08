@@ -12,7 +12,7 @@ const ProjectsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const handleTagChange = (newTag : any) => {
+  const handleTagChange = (newTag: any) => {
     setTag(newTag);
   };
 
@@ -27,13 +27,13 @@ const ProjectsSection = () => {
 
   return (
     <section id="Projects" className="mx-10 pt-10">
-      
-        <span className="flex items-center justify-center lg:text-4xl md:text-2xl gap-2 text-blue-800 font-bold">
 
-           My Projects 
-           <CgBolt color="yellow"/>
-        </span>
-      
+      <span className="flex items-center justify-center lg:text-4xl md:text-2xl gap-2 text-blue-800 font-bold">
+
+        My Projects
+        <CgBolt color="yellow" />
+      </span>
+
       <div className="text-blue-800 flex flex-row justify-center items-center gap-2 py-6">
         <ProjectTag
           onClick={handleTagChange}

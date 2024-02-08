@@ -5,6 +5,7 @@ export const details = [
         id: "skills",
         content: (
             <ul className="list-disc pl-2">
+                <li>Next.js</li>
                 <li>Node.js</li>
                 <li>Express</li>
                 <li>PostgreSQL</li>
@@ -21,8 +22,8 @@ export const details = [
         id: "education",
         content: (
             <ul className="list-disc pl-2">
-                <li>B.Sc In Computer Science (University of Calcutta)</li>
-                <li>MCA (Heritage Institute of Technology)</li>
+                <li>B.SC CS (CU)</li>
+                <li>MCA (HIT)</li>
             </ul>
         ),
     },

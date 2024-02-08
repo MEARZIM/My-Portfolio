@@ -4,6 +4,8 @@
 
 body{
     height: 100vh;
+    width: 100vw;
+    position: absolute;
 }
 
 .custom-bg {
@@ -49,6 +51,7 @@ body{
 
 @layer utilities {
     .rounded-custom {
+        border: 1px solid black;
         border-radius: 70% 30% 27% 73% / 38% 52% 48% 62%;
     }
 

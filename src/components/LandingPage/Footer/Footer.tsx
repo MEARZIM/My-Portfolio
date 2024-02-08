@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import React from 'react'
-import { FaTwitter,FaFacebook,FaInstagram,FaGithub } from "react-icons/fa";
+import { FaTwitter,FaFacebook,FaInstagram,FaGithub,FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="relative custom-bg pt-2 pb-2">
+        <footer className="relative custom-bg p-16">
             <div className="container mx-auto px-4">
                 <div className="flex flex-wrap text-left lg:text-left">
                     <div className="w-full lg:w-6/12 px-4">
@@ -25,6 +25,9 @@ const Footer = () => {
                             <button className="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
                                 <a href="https://github.com/MEARZIM"> <FaGithub  size={20} color='black'/> </a>
                             </button>
+                            <button className="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                <a href="https://www.linkedin.com/in/ayan-saha-b12aa0248"> <FaLinkedin  size={20} color='blue'/> </a>
+                            </button>
                         </div>
                     </div>
                     
@@ -33,7 +36,7 @@ const Footer = () => {
                 <div className="flex flex-wrap items-center md:justify-between justify-center">
                     <div className="w-full md:w-4/12 px-4 mx-auto text-center">
                         <div className="text-sm text-white font-semibold py-1">
-                            Created by Ayan Saha<span id="get-current-year"> 2024</span>
+                        All rights reserved © <span id="get-current-year"> 2024</span> Ayan Saha
                         </div>
                     </div>
                 </div>
