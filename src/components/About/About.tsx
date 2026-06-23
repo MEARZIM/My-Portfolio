@@ -108,11 +108,11 @@ const AboutSection = () => {
 
                     {/* Description Paragraph */}
                     <p className="text-base sm:text-lg leading-relaxed text-zinc-600 mb-8 max-w-2xl">
-                        I am a full stack web developer with a passion for creating
+                       {` I am a full stack web developer with a passion for creating
                         interactive and responsive web applications. I have experience
                         working with JavaScript, React, Redux, Node.js, Express, PostgreSQL,
                         Sequelize, HTML, CSS, and Git. I am a quick learner, a dedicated team player,
-                        and I'm always looking to push the boundaries of digital experiences.
+                        and I'm always looking to push the boundaries of digital experiences.`}
                     </p>
 
                     {/* Tab Selection Row */}

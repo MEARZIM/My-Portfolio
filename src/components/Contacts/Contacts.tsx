@@ -42,11 +42,11 @@ const Contacts = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-3 block">
-                        Let's Collaborate
+                        {`Let's Collaborate`}
                     </span>
                     <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-900 flex items-center justify-center gap-3">
                         <FaAnglesRight className="text-blue-600 w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
-                        Let's Keep In <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Touch!</span>
+                       {` Let's Keep In`} <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Touch!</span>
                         <FaAnglesLeft className="text-blue-600 w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
                     </h2>
                 </motion.div>
@@ -134,7 +134,7 @@ const Contacts = () => {
                         {/* Top glassmorphic accent map header */}
                         <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md px-4 py-2 border border-zinc-100 rounded-full shadow-sm flex items-center gap-2 text-xs font-bold text-zinc-800">
                             <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                            Primary Workspace (Kolkata, IN)
+                            {`Primary Workspace (Kolkata, IN)`}
                         </div>
 
                         <iframe
