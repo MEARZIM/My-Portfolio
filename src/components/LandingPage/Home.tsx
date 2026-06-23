@@ -3,6 +3,7 @@ import React from 'react'
 import Header from '@/components/LandingPage/Headers/Header'
 import Hero from '@/components/LandingPage/HeroSection/Hero'
 import AboutMe from '@/components/About/About'
+
 import Footer from './Footer/Footer'
 import Contacts from '../Contacts/Contacts'
 import Weal from '../SkillWeal/Weal';
@@ -16,9 +17,9 @@ const Home = () => {
     <>
       <Header />
       <Hero />
+      <AboutMe />
       <ExperienceSection />
       <Weal />
-      <AboutMe />
       <ProjectsSection />
       <Contacts />
       <Footer />
