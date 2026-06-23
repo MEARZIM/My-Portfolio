@@ -1,105 +1,149 @@
 "use client";
-import React, { useTransition, useState, useEffect } from "react";
+
 import Image from "next/image";
-import TabButton from "./TabButton";
-import HeroImage from '@/assets/me.png'
-import { motion } from "framer-motion";
+import React, { useTransition, useState, useId } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+import HeroImage from "@/assets/me.png";
+
 import { details } from "./details";
 
 
-const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
-const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
+const TabButton = ({
+    active,
+    onClick,
+    children
+}: {
+    active: boolean;
+    onClick: () => void;
+    children: React.ReactNode;
+}) => {
+    const layoutId = useId();
+    return (
+        <button
+            onClick={onClick}
+            className={`relative py-2.5 px-5 text-sm md:text-base font-semibold transition-colors duration-300 focus:outline-none ${active
+                    ? "text-blue-600"
+                    : "text-zinc-500 hover:text-zinc-900"
+                }`}
+        >
+            <span className="relative z-10">{children}</span>
+            {active && (
+                <motion.div
+                    layoutId={layoutId}
+                    className="absolute inset-0 bg-blue-50/70 rounded-lg -z-0 border-b-2 border-blue-600"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+            )}
+        </button>
+    );
+};
 
-
+// ==========================================
+// MAIN COMPONENT MAIN LAYOUT
+// ==========================================
 const AboutSection = () => {
-    const [isVisible, setIsVisible] = useState(false);
     const [tab, setTab] = useState("skills");
     const [isPending, startTransition] = useTransition();
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [isInView, setIsInView] = useState(false);
 
-
-
-
-    const handleTabChange = (id: React.SetStateAction<string>) => {
+    const handleTabChange = (id: string) => {
         startTransition(() => {
             setTab(id);
         });
     };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const appearPosition = 400;
-            const scrollY = window.scrollY;
-
-            if (scrollY >= appearPosition) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-    }, []);
-
+    const activeContent = details.find((t) => t.id === tab)?.content;
 
     return (
-        <section className="text-white lg:py-20" id="About">
-            <div className={`md:grid md:grid-cols-2 gap-2 items-center py-8 px-4 xl:gap-2 sm:py-16 xl:px-28 
-            transform transition-transform ${isVisible ? 'translate-x-0 duration-1000' : '-translate-x-full duration-1000'}`}>
-                <motion.div
-                    initial={false}
-                    animate={
-                        isLoaded && isInView
-                            ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
-                            : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
-                    }
-                    transition={{ duration: 1, delay: 1 }}
-                    viewport={{ once: true }}
-                    onViewportEnter={() => setIsInView(true)}
-                >
+        <section
+            className="relative overflow-hidden py-24 px-4 sm:px-6 lg:px-8 bg-white"
+            id="About"
+        >
+            {/* Decorative premium radial glows */}
+            <div className="absolute top-1/4 left-10 w-72 h-72 bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-indigo-400/5 rounded-full blur-3xl pointer-events-none" />
 
-                    <Image src={HeroImage} width={500} height={500} alt={""} onLoad={() => setIsLoaded(true)}/>
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                {/* Profile Image Container */}
+                <motion.div
+                    className="lg:col-span-5 relative flex justify-center"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                >
+                    {/* Accent outer gradient glow */}
+                    <div className="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 opacity-60 blur-lg" />
+
+                    <div className="relative group overflow-hidden rounded-2xl border border-zinc-400 bg-white p-2.5 shadow-xl transition-shadow duration-300 hover:shadow-2xl">
+                        <Image
+                            src={HeroImage}
+                            width={450}
+                            height={450}
+                            alt="Profile portrait"
+                            className="rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                            priority
+                        />
+                    </div>
                 </motion.div>
 
-                <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-                    <h2 className="text-4xl font-bold text-blue-800 mb-4">About Me</h2>
-                    <p className="text-base lg:text-lg text-black">
+                {/* Content & Tab Panel */}
+                <motion.div
+                    className="lg:col-span-7 flex flex-col justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                    {/* Subtitle Badge */}
+                    <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-3 block">
+                        Get To Know Me
+                    </span>
+
+                    {/* Main Title */}
+                    <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-zinc-900 mb-6">
+                        About <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Me</span>
+                    </h2>
+
+                    {/* Description Paragraph */}
+                    <p className="text-base sm:text-lg leading-relaxed text-zinc-600 mb-8 max-w-2xl">
                         I am a full stack web developer with a passion for creating
                         interactive and responsive web applications. I have experience
                         working with JavaScript, React, Redux, Node.js, Express, PostgreSQL,
-                        Sequelize, HTML, CSS, and Git. I am a quick learner and I am always
-                        looking to expand my knowledge and skill set. I am a team player and
-                        I am excited to work with others to create amazing applications.
+                        Sequelize, HTML, CSS, and Git. I am a quick learner, a dedicated team player,
+                        and I'm always looking to push the boundaries of digital experiences.
                     </p>
-                    <div className="flex flex-row justify-start mt-8">
-                        <TabButton
-                            selectTab={() => handleTabChange("skills")}
-                            active={tab === "skills"}
-                        >
-                            {" "}
-                            Skills{" "}
+
+                    {/* Tab Selection Row */}
+                    <div className="flex flex-row space-x-1 border-b border-zinc-100 pb-2 mb-6 overflow-x-auto scrollbar-none">
+                        <TabButton onClick={() => handleTabChange("skills")} active={tab === "skills"}>
+                            Skills
                         </TabButton>
-                        <TabButton
-                            selectTab={() => handleTabChange("education")}
-                            active={tab === "education"}
-                        >
-                            {" "}
-                            Education{" "}
+                        <TabButton onClick={() => handleTabChange("education")} active={tab === "education"}>
+                            Education
                         </TabButton>
-                        <TabButton
-                            selectTab={() => handleTabChange("certifications")}
-                            active={tab === "certifications"}
-                        >
-                            {" "}
-                            Certifications{" "}
+                        <TabButton onClick={() => handleTabChange("certifications")} active={tab === "certifications"}>
+                            Certifications
                         </TabButton>
                     </div>
-                    <div className="mt-8 ml-2 text-black">
-                        {details.find((t: any, key: any) => t.id === tab)?.content}
+
+                    {/* Dynamic Content Panel */}
+                    <div className="min-h-[190px]">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={tab}
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -8 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                {activeContent}
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
-                </div>
+                </motion.div>
+
             </div>
         </section>
     );
