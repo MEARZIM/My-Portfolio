@@ -7,19 +7,21 @@ import Footer from './Footer/Footer'
 import Contacts from '../Contacts/Contacts'
 import Weal from '../SkillWeal/Weal';
 import ProjectsSection from '../Projects/ProjectsSection'
+import ExperienceSection from '../experience/ExperienceSection'
 
 const Home = () => {
-  
+
 
   return (
     <>
-    <Header />
-    <Hero />
-    <AboutMe />
-    <Weal />
-    <ProjectsSection />
-    <Contacts />
-    <Footer />
+      <Header />
+      <Hero />
+      <ExperienceSection />
+      <Weal />
+      <AboutMe />
+      <ProjectsSection />
+      <Contacts />
+      <Footer />
     </>
   )
 }
