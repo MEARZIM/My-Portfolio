@@ -1,55 +1,101 @@
-import React, { useRef } from 'react'
+"use client";
+import React, { useRef } from 'react';
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-scroll/modules";
-import HeroImage from '@/assets/me.png'
-import CustomArrow from '@/assets/hero-element-2.png'
-import { keypoints } from "./keyPoints";
-import { FaPlus } from "react-icons/fa";
+import HeroImage from '@/assets/me.png';
+import CustomArrow from '@/assets/hero-element-2.png';
+import { FaPlus, FaLinkedinIn } from "react-icons/fa6";
+import { keypoints } from './keyPoints';
+
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.15 }
+    }
+};
+
+const fadeUpVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { type: "spring", stiffness: 100, damping: 18 }
+    }
+};
 
 const Hero = () => {
-
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-    const cardVariants = {
-        initial: { y: 50, opacity: 0 },
-        animate: { y: 0, opacity: 1 },
-    };
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
     return (
-        <section className="lg:py-2 px-16 py-10 custom-bg md:h-full h-[155vh]">
-            <div className="grid grid-cols-1 justify-center sm:grid-cols-12 md:grid-cols-10 2 Laptops:grid-cols-15 md:gap-[70px] 2xl:gap-0 md:pt-20 mx-5">
+        <section
+            ref={containerRef}
+            className="relative overflow-hidden lg:py-12 px-6 sm:px-16 py-10 custom-bg md:min-h-screen flex flex-col justify-center"
+            id="Home"
+        >
+            {/* Decorative premium ambient overlays that blend into custom-bg */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none opacity-40" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-3xl pointer-events-none opacity-40" />
+
+            {/* Main Grid Wrapper */}
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 w-full">
+
+                {/* STREAMING_CHUNK: Left Content & Introduction Copy Panel */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="lg:col-span-7 text-center lg:text-left flex flex-col justify-center"
                 >
-                    <h1 className="text-white mb-2 text-2xl sm:text-xl lg:text-7xl lg:leading-normal font-bold">
-                        <span className=" bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600">
-                            Hello, I&apos;m{" "}
-                        </span>
-                        <br></br>
-                        <span className='md:text-7xl text-base' >
+                    {/* Subtle Introduction Badge */}
+                    <motion.span
+                        variants={fadeUpVariants}
+                        className="text-xs font-bold tracking-widest text-teal-400 uppercase mb-4 block"
+                    >
+                        Welcome to my space
+                    </motion.span>
+
+                    {/* Dynamic Typography Header */}
+                    <motion.h1
+                        variants={fadeUpVariants}
+                        className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight"
+                    >
+                        Hello, I&apos;m{" "}
+                        <span className="block mt-2 bg-gradient-to-r from-teal-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent h-[1.15em]">
                             <TypeAnimation
                                 sequence={[
                                     "Ayan Saha.",
+                                    2500,
+                                    "a Full Stack Dev.",
+                                    1500,
+                                    "an App Dev.",
                                     2000,
-                                    "a Web Developer.",
-                                    1000,
+                                    "an AWS Cloud Engineer.",
+                                    1500,
                                 ]}
                                 wrapper="span"
                                 speed={50}
                                 repeat={Infinity}
                             />
-
                         </span>
-                    </h1>
-                    <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-                        Where Vision Meets Versatility.
-                    </p>
-                    <div className='ml-0 pl-0 md:pl-6 md:ml-10'>
+                    </motion.h1>
+
+                    <motion.p
+                        variants={fadeUpVariants}
+                        className="text-base sm:text-lg lg:text-xl text-zinc-300 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed font-medium"
+                    >
+                        Where Vision Meets Versatility. Dedicated to engineering robust backend architectures and highly polished digital experiences.
+                    </motion.p>
+
+                    {/* Interactive Responsive Buttons Block */}
+                    <motion.div
+                        variants={fadeUpVariants}
+                        className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12"
+                    >
                         <Link
                             activeClass="active"
                             to="Contact"
@@ -57,74 +103,87 @@ const Hero = () => {
                             smooth={true}
                             offset={50}
                             duration={500}
-
-                            className="px-8 text-lg font-bold inline-block py-3 w-full sm:w-fit rounded mr-4  hover:bg-sky-700 bg-gradient-to-r from-teal-400 to-indigo-600 text-white
-                                        transform scale-100 hover:scale-110 transition-transform duration-300 ease-in-out"
+                            className="cursor-pointer w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-teal-400 to-indigo-600 hover:from-teal-500 hover:to-indigo-700 text-white font-bold text-center rounded-xl shadow-lg shadow-teal-500/10 hover:shadow-xl hover:shadow-teal-500/20 transform hover:-translate-y-0.5 transition-all duration-300"
                         >
                             Hire Me
                         </Link>
+
                         <a
-                            href="/"
-                            className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 text-white mt-3
-                                        transform scale-100 hover:scale-110 transition-transform duration-300 ease-in-out"
+                            href="https://www.linkedin.com/in/ayan-saha-b12aa0248/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 border-2 border-white/20 hover:border-teal-400 hover:bg-white/5 text-white font-bold rounded-xl transition-all duration-300"
                         >
-                            <span className="block text-lg bg-transparent hover:text-blue-400 font-bold rounded-full px-5 py-2">
-                                View CV
-                            </span>
+                            <FaLinkedinIn className="w-4 h-4 text-teal-400" />
+                            View LinkedIn
                         </a>
-                    </div>
+                    </motion.div>
                 </motion.div>
 
-                <div className='absolute z-10 top-[21rem] left-10 md:top-[36rem] left-right-movement'>
-                    <Image src={CustomArrow} alt='' />
-                </div>
-
+                {/* STREAMING_CHUNK: Right Profile Picture Container with custom round shape */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className=" col-span-4 flex md:block md:place-self-start mt-4 lg:mt-0"
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="lg:col-span-5 relative flex flex-col items-center justify-center"
                 >
-                    <div className=" rounded-full rounded-custom w-[250px] h-[250px] lg:w-[450px] lg:h-[450px] relative overflow-hidden
-                                        ">
+                    {/* Aesthetic Background Halo Glow Ring */}
+                    <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-teal-400 to-indigo-400 opacity-20 blur-xl animate-pulse" />
+
+                    {/* Clean custom-rounded framing image wrapper */}
+                    <div className="relative rounded-full rounded-custom w-[260px] h-[260px] lg:w-[420px] lg:h-[420px] overflow-hidden border-4 border-white/10 shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
                         <Image
                             src={HeroImage}
-                            alt="hero image"
-                            className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-full h-full object-cover "
-                            width={300}
-                            height={300}
+                            alt="Ayan Saha Portrait Image"
+                            className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-full h-full object-cover"
+                            priority
                         />
-
                     </div>
 
+                    {/* Custom Decorative Floating Connector Arrow */}
+                    <motion.div
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                        className="absolute -bottom-10 -left-6 sm:left-4 z-20 pointer-events-none hidden sm:block"
+                    >
+                        <Image src={CustomArrow} alt="Visual connector arrow decoration" className="w-24 h-24 object-contain opacity-85 invert" />
+                    </motion.div>
                 </motion.div>
 
             </div>
 
-            <div className='absolute md:left-[65%] md:top-[188px] md:right-7 left-0 right-0 w-[200px] h-[400px]  my-10 md:my-6 mx-auto p-2 flex justify-between items-center flex-col '>
-
-                {keypoints.map((keyPoint, keys) => (
-                    <motion.div
-
-                        key={keys}
-                        className='w-40 h-20  flex justify-between items-center text-white '
-                        variants={cardVariants}
-                        initial="initial"
-                        animate={isInView ?  "initial": "animate"}
-                        transition={{ duration: 0.3, delay: keys * 0.4 }}
-                    >
-                        <span className='px-2 py-4  bg-transparent  rounded-l-lg cursor-pointer'>
-                            <FaPlus color='white' size={25} />
-                        </span>
-                        <span className='px-2 py-4 bg-transparent rounded-r-lg font-bold text-lg'>
-                            {keyPoint.keypoint}
-                        </span>
-
-                    </motion.div>
-                ))}
+            {/* STREAMING_CHUNK: Premium Transparent Glassmorphic Keypoints Showcases */}
+            <div className="max-w-7xl mx-auto mt-10 pt-10 border-t border-white/10 relative z-10 w-full">
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                >
+                    {keypoints.map((keyPoint, keys) => (
+                        <motion.div
+                            key={keys}
+                            className="flex items-start gap-4 p-5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-400 hover:bg-white/10 hover:shadow-xl transition-all duration-300 backdrop-blur-xs"
+                            variants={fadeUpVariants}
+                        >
+                            <div className="p-2.5 bg-teal-400/10 text-teal-400 rounded-xl shrink-0">
+                                <FaPlus className="w-4 h-4" />
+                            </div>
+                            <div>
+                                <h3 className="text-sm font-bold tracking-wider text-white uppercase mb-1">
+                                    {keyPoint.keypoint}
+                                </h3>
+                                <p className="text-xs sm:text-sm text-zinc-300 font-medium">
+                                    {keyPoint.description}
+                                </p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </motion.div>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Hero
+export default Hero;
